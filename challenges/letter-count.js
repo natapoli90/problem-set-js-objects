@@ -19,15 +19,30 @@
   - Instead of just counting letters, calculate their percent-based frequency.
     See: http://www.math.cornell.edu/~mec/2003-2004/cryptography/subs/frequencies.html
 
-    ```javascript
-    {
-      "a": 0.2, // percent
-      "p": 0.4,
-      "l": 0.2,
-      "e": 0.2
-    }
-    ```
-
 */
 
 // YOUR CODE HERE
+Object.size = function letterCount (obj) {
+	var size = 0;
+	for(var key in obj) {
+		if(obj.hasOwnProperty(key))
+    size++;
+	}
+	return size;
+};
+
+//initial vars
+var str = prompt("Enter a word: ");
+var letters = new Object;
+
+//loop, figure it out
+for(x = 0, length = str.length; x < length; x++) {
+	var l = str.charAt(x).replace(/[\s"'.,-\/#!$%\^&*;:{}=\-_`~()\\\[\]@+|?><]/g,"").toLowerCase();
+	letters[l] = (isNaN(letters[l]) ? 1 : letters[l] + 1);
+}
+
+//output count!
+for(var key in letters) {
+	console.log(key + ' :: ' + letters[key]);
+}
+console.log(Object.size(letters));

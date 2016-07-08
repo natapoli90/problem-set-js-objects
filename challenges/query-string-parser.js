@@ -45,3 +45,26 @@
 */
 
 // YOUR CODE HERE
+
+
+function parseQueryString(queryString) {
+    if(queryString === 'undefined' || queryString === '') {
+        return false;
+    } else {
+        // Get rid of a leading '?' so that you can pass 'location.search' to this function
+        if(queryString.substr(0, 1) == '?') { queryString = queryString.substr(1); }
+
+        // Split up the querystring
+        var components = queryString.split('&');
+
+        // Assign each variable of the querystring to a new property of the final object
+        var finalObject = new Object();
+        var parts;
+        for (var i = 0; i < components.length; i++) {
+            parts = components[i].split('=');
+            finalObject[parts[0]] = decodeURI(parts[1]);
+        }
+
+        return finalObject;
+    }
+}
